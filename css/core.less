@@ -1,0 +1,261 @@
+// CSS Reset
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// Mixins
+.flexrow() {display: flex;
+    flex-direction: row;}
+.flexcolumn() {display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;}
+.text(@align, @font) {text-align: @align;
+    font-size: @font;}
+
+// Variables
+@1175: ~"only screen and (max-width: 1175px)";
+@930: ~"only screen and (max-width: 930px)";
+@730: ~"only screen and (max-width: 730px)";
+@575: ~"only screen and (max-width: 575px)";
+@400: ~"only screen and (max-width: 400px)";
+@mainbg: #f7edf7;
+@mainfont: #341835;
+@navbg: #A349A4;
+@navfont: #462046;
+@footerbg: #dfb9df;
+@color: #692f6a;
+@altcolor: #8b3f8d;
+@border: 3px double @color;
+
+// Basics
+.center {margin: auto;}
+body {background-color: @mainbg;}
+
+// Navigation
+nav {margin: 0;
+    padding: 0;
+    width: 275px;
+    background-color: @navbg;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+
+    img {width: 10em;
+        margin: 1em 3em;}
+
+    .navigation {.flexcolumn();
+        padding: .8em;
+        line-height: 1.5;
+        .text(center, 1.6rem);
+    
+        a {color: @navfont;
+            text-decoration: none;
+            padding: .2em;
+            border: @border;
+            width: 260px;}
+        
+        .active {background-color: @mainbg;
+            color: @color;} 
+    }
+}
+
+@media @1175 {
+    nav {width: 200px;
+    
+        img {width: 8em;
+            margin: 1em;}
+
+        .navigation {padding: .6em;
+            .text(center, 1.4em);
+        
+            a {width: 170px;}
+        }
+    }
+}
+
+@media @930 {
+    nav {width: 175px;
+    
+        img {width: 7em;
+            margin: 1em;}
+
+        .navigation {padding: .4em;
+            .text(center, 1.2em);
+        
+            a {width: 140px;}
+        }
+    }
+}
+
+@media @730 {
+    nav {.flexrow();
+        justify-content: space-around;
+        position: fixed;
+        width: 100%;
+        height: auto;
+    
+        img {width: 6em;
+            margin: .5em;}
+
+        .navigation {.flexrow();
+            flex-wrap: wrap;
+            justify-content: space-around;
+        
+            a {width: 75px;
+                border: none;}
+        }
+    }
+}
+
+@media @575 {
+    nav {
+
+        .mobile {display: none;}
+    }
+}
+
+// Main Content
+.main {margin-left: 275px;
+    padding: 1px 2px;
+    border: @border;
+    min-height: 1000px;
+
+    header {.flexcolumn();
+        margin-top: 1em;
+        border-bottom: @border;
+        padding-bottom: 1em;
+
+        .mobile {display: none;}
+
+        h1 {.text(center, 4em);
+            color: @mainfont;
+            font-weight: bold;}
+
+        h3 {.text(center, 1.5em);
+            color: @altcolor;
+            font-weight: bold;}
+    }
+    
+    .content {
+
+    }
+
+    footer {.flexcolumn();
+        background-color: @footerbg;
+        border: @border;
+
+        p {.text(center, 1rem);
+            padding: 1rem;
+            color: @altcolor;}
+
+        a {.text(center, 1rem);
+            padding: 1rem;
+            color: @altcolor;
+            text-decoration: none;}
+    }
+}
+
+@media @1175 {
+    .main {margin-left: 200px;}
+}
+
+@media @930 {
+    .main {margin-left: 175px;
+    
+        header {
+
+            h1 {.text(center, 3em);}
+
+            h3 {.text(center, 1.2em);}
+        }
+    }
+}
+
+@media @730 {
+    .main {margin-left: 0;
+        min-height: 1000px;
+    
+        header {.flexcolumn();
+            position: relative;
+            top: 120px;}
+
+        .content {
+
+        }
+
+        footer {position: relative;
+            top: 120px;}
+    }
+}
+
+@media @575 {
+    .main {
+
+        header {.flexrow();
+
+            h1 {.text(center, 2.4em);}
+
+            h3 {.text(center, 1em);}
+
+            .mobile {display: block;
+                width: 8em;}
+        }
+    }
+}
+
+@media @400 {
+    .main {
+
+        header {
+
+            h3 {display: none;}
+        }
+    }
+}
